@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tic-Tac-Toe</title>
+    <style>
+        html {
+            font-family: "Palatino Linotype",monospace;
+        }
+        .row {
+            display: flex;
+        }
+        div .row div {
+            text-align: center;
+            margin: 5px;
+            width: 75px;
+            height: 75px;
+            border: solid black;
+            border-radius: 25%;
+
+            display:flex;
+            justify-content:center;
+            align-items:center;
+        }
+        button {
+            font-family: "Palatino Linotype",monospace;
+            font-size: 25px;
+        }
+        header,p,button {
+            text-align: center;
+            width: 270px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .wrapper {
+            width: 270px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        button {
+
+        }
+    </style>
+</head>
+<body>
+    <header>
+
+        <h1>Tic-Tac-Toe Game</h1>
+
+        <p>dmytrii karpeka's edition</p>
+
+    </header>
+
+    <div class="wrapper" id="wrapper">
+        <div class="row">
+            <div class="e11"><input type="image" src="tic.png" alt="e 1 1" id="e11" onclick="f(this.id); checkForWinner();" readonly></div>
+            <div class="e12" ><input type="image" src="tic.png" alt="e 1 2" id="e12" onclick="f(this.id); checkForWinner();" readonly></div>
+            <div class="e13"><input type="image" src="tic.png" alt="e 1 3" id="e13" onclick="f(this.id); checkForWinner();" readonly></div>
+        </div>
+        <div class="row">
+            <div class="e21"><input type="image" src="tic.png" alt="e 2 1" id="e21" onclick="f(this.id); checkForWinner();" readonly></div>
+            <div class="e22"><input type="image" src="tic.png" alt="e 2 2" id="e22" onclick="f(this.id); checkForWinner();" readonly></div>
+            <div class="e23"><input type="image" src="tic.png" alt="e 2 3" id="e23" onclick="f(this.id); checkForWinner();" readonly></div>
+        </div>
+        <div class="row">
+            <div class="e31"><input type="image" src="tic.png" alt="e 3 1" id="e31" onclick="f(this.id); checkForWinner();" readonly></div>
+            <div class="e32"><input type="image" src="tic.png" alt="e 3 2" id="e32" onclick="f(this.id); checkForWinner();" readonly></div>
+            <div class="e33"><input type="image" src="tic.png" alt="e 3 3" id="e33" onclick="f(this.id); checkForWinner();" readonly></div>
+        </div>
+        <p class="message"></p>
+    </div>
+    <script>
+        // todo: закинуть проєкт на гітхаб
+        // todo: додати кнопку для перезавантаження усіх елементів на сторінці та відновлення початкового стану для нової гри
+        function checkForWinner() {
+            let e11, e12, e13, e21, e22, e23, e31, e32, e33;
+            e11 = document.getElementById("e11");
+            e12 = document.getElementById("e12");
+            e13 = document.getElementById("e13");
+            e21 = document.getElementById("e21");
+            e22 = document.getElementById("e22");
+            e23 = document.getElementById("e23");
+            e31 = document.getElementById("e31");
+            e32 = document.getElementById("e32");
+            e33 = document.getElementById("e33");
+
+            // перевірка комбінацій розміщення елементів на виявлення виграшної комбінації
+
+            let tac = "tac.png";
+            let toe = "toe.png";
+            let resetButton;
+
+            function checkFor(elem) {
+                if (e11.src.slice(-7) === elem && e12.src.slice(-7) === elem && e13.src.slice(-7) === elem) { // 1 row
+                    let greenCells = document.querySelectorAll('.e11,.e12,.e13');
+                    for (let i=0; i < greenCells.length; i++) {
+                        greenCells[i].style.borderColor = "green";
+                    }
+
+                    e21.disabled = true;
+                    e22.disabled = true;
+                    e23.disabled = true;
+                    e31.disabled = true;
+                    e32.disabled = true;
+                    e33.disabled = true;
+
+                    let pWin = document.querySelector(".message");
+                    pWin.textContent = "Congratulations! The winner is " + elem.slice(0, 3);
+                    setGameOver();
+                } else if (e21.src.slice(-7) === elem && e22.src.slice(-7) === elem && e23.src.slice(-7) === elem) { // 2 row
+                    let greenCells = document.querySelectorAll('.e21,.e22,.e23');
+                    for (let i=0; i < greenCells.length; i++) {
+                        greenCells[i].style.borderColor = "green";
+                    }
+
+                    e11.disabled = true;
+                    e12.disabled = true;
+                    e13.disabled = true;
+                    e31.disabled = true;
+                    e32.disabled = true;
+                    e33.disabled = true;
+
+                    let pWin = document.querySelector(".message");
+                    pWin.textContent = "Congratulations! The winner is " + elem.slice(0, 3);
+                    setGameOver();
+                } else if (e31.src.slice(-7) === elem && e32.src.slice(-7) === elem && e33.src.slice(-7) === elem) { // 3 row
+                    let greenCells = document.querySelectorAll('.e31,.e32,.e33');
+                    for (let i=0; i < greenCells.length; i++) {
+                        greenCells[i].style.borderColor = "green";
+                    }
+
+                    e11.disabled = true;
+                    e12.disabled = true;
+                    e13.disabled = true;
+                    e21.disabled = true;
+                    e22.disabled = true;
+                    e23.disabled = true;
+
+                    let pWin = document.querySelector(".message");
+                    pWin.textContent = "Congratulations! The winner is " + elem.slice(0, 3);
+                    setGameOver();
+                } else if (e11.src.slice(-7) === elem && e21.src.slice(-7) === elem && e31.src.slice(-7) === elem) { // 1 column
+                    let greenCells = document.querySelectorAll('.e11,.e21,.e31');
+                    for (let i=0; i < greenCells.length; i++) {
+                        greenCells[i].style.borderColor = "green";
+                    }
+
+                    e12.disabled = true;
+                    e13.disabled = true;
+                    e22.disabled = true;
+                    e23.disabled = true;
+                    e32.disabled = true;
+                    e33.disabled = true;
+
+                    let pWin = document.querySelector(".message");
+                    pWin.textContent = "Congratulations! The winner is " + elem.slice(0, 3);
+                    setGameOver();
+                } else if (e12.src.slice(-7) === elem && e22.src.slice(-7) === elem && e32.src.slice(-7) === elem) { // 2 column
+                    let greenCells = document.querySelectorAll('.e12,.e22,.e32');
+                    for (let i=0; i < greenCells.length; i++) {
+                        greenCells[i].style.borderColor = "green";
+                    }
+
+                    e11.disabled = true;
+                    e13.disabled = true;
+                    e21.disabled = true;
+                    e23.disabled = true;
+                    e31.disabled = true;
+                    e33.disabled = true;
+
+                    let pWin = document.querySelector(".message");
+                    pWin.textContent = "Congratulations! The winner is " + elem.slice(0, 3);
+                    setGameOver();
+                } else if (e13.src.slice(-7) === elem && e23.src.slice(-7) === elem && e33.src.slice(-7) === elem) { // 3 column
+                    let greenCells = document.querySelectorAll('.e13,.e23,.e33');
+                    for (let i=0; i < greenCells.length; i++) {
+                        greenCells[i].style.borderColor = "green";
+                    }
+
+                    e11.disabled = true;
+                    e12.disabled = true;
+                    e21.disabled = true;
+                    e22.disabled = true;
+                    e31.disabled = true;
+                    e32.disabled = true;
+
+                    let pWin = document.querySelector(".message");
+                    pWin.textContent = "Congratulations! The winner is " + elem.slice(0, 3);
+                    setGameOver();
+                } else if (e11.src.slice(-7) === elem && e22.src.slice(-7) === elem && e33.src.slice(-7) === elem) { // main diagonal
+                    let greenCells = document.querySelectorAll('.e11,.e22,.e33');
+                    for (let i=0; i < greenCells.length; i++) {
+                        greenCells[i].style.borderColor = "green";
+                    }
+
+                    e12.disabled = true;
+                    e13.disabled = true;
+                    e21.disabled = true;
+                    e23.disabled = true;
+                    e31.disabled = true;
+                    e32.disabled = true;
+
+                    let pWin = document.querySelector(".message");
+                    pWin.textContent = "Congratulations! The winner is " + elem.slice(0, 3);
+                    setGameOver();
+                } else if (e13.src.slice(-7) === elem && e22.src.slice(-7) === elem && e31.src.slice(-7) === elem) { // side diagonal
+                    let greenCells = document.querySelectorAll('.e13,.e22,.e31');
+                    for (let i=0; i < greenCells.length; i++) {
+                        greenCells[i].style.borderColor = "green";
+                    }
+
+                    e11.disabled = true;
+                    e12.disabled = true;
+                    e21.disabled = true;
+                    e23.disabled = true;
+                    e32.disabled = true;
+                    e33.disabled = true;
+
+                    let pWin = document.querySelector(".message");
+                    pWin.textContent = "Congratulations! The winner is " + elem.slice(0, 3);
+                    setGameOver();
+                }
+            }
+            checkFor(tac);
+            checkFor(toe);
+
+            function resetGame() {
+                let resetParas = ['e11', 'e12', 'e13', 'e21', 'e22', 'e23', 'e31', 'e32', 'e33'];
+                for (let i=0; i <resetParas.length; i++) {
+                    document.getElementById(resetParas[i]).src = "tic.png";
+                    document.getElementById(resetParas[i]).disabled = false;
+                }
+                document.querySelector(".message").textContent = "";
+                let greenCells = document.querySelectorAll('.e11,.e12,.e13,.e21,.e22,.e23,.e31,.e32,.e33');
+                for (let i=0; i < greenCells.length; i++) {
+                    greenCells[i].style.borderColor = "black";
+                }
+                flag = 1
+                resetButton.parentNode.removeChild(resetButton);
+            }
+
+            function setGameOver() {
+                resetButton = document.createElement('Button');
+                resetButton.textContent = "Start new game";
+                let myDiv = document.getElementById("wrapper");
+                myDiv.appendChild(resetButton)
+                resetButton.addEventListener('click', resetGame);
+            }
+        }
+
+        let flag = 1;
+        function f(clickedId){
+            if (flag === 1) {
+                document.getElementById(clickedId).src = "tac.png";
+                document.getElementById(clickedId).disabled = true;
+                flag = 0;
+            } else {
+                document.getElementById(clickedId).src = "toe.png";
+                document.getElementById(clickedId).disabled = true;
+                flag = 1;
+            }
+        }
+    </script>
+</body>
+</html>
