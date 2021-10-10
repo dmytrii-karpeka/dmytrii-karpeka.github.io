@@ -1,6 +1,16 @@
 .main-container {
     display: grid;
-    grid-template-columns: 15% 85%;
+    height: 100%;
+    grid-template-columns: 20% 80%;
+}
+
+#side-menu {
+    height: 100%;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    position: fixed;
+    overflow-x: hidden;
 }
 
 #main-content {
@@ -26,8 +36,6 @@
     margin-left: 20px;
     padding: 0;
     margin-top: 20px;
-
-    position: fixed;
 }
 
 .list li {
