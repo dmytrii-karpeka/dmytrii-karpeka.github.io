@@ -1,0 +1,125 @@
+.main-container {
+    width: 100%;
+    height: 100%;
+}
+
+div {
+    border: black solid 1px;
+}
+
+.calc-container {
+    width: 50%;
+    height: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    border: black solid 1px;
+    display: grid;
+    grid-template-columns:
+        14% 14% 14% 14% 14% 30%;
+    grid-template-rows:
+        16% 21% 21% 21% 21%;
+    grid-template-areas:
+        'ds ds ds ds ds j'
+        'b9 b8 b7 bd bc j'
+        'b6 b5 b4 sq eq j'
+        'b3 b2 b1 pl mn j'
+        'pm b0 cm mp dv j';
+    align-items: start;
+}
+
+#ds {
+    grid-area: ds;
+    height: 100%;
+    word-wrap: break-word;
+}
+
+#j {
+    grid-area: j;
+    height: 100%;
+    overflow: scroll;
+}
+
+#b9 {
+    grid-area: b9;
+}
+
+#b8 {
+    grid-area: b8;
+}
+
+#b7 {
+    grid-area: b7;
+}
+
+#b6 {
+    grid-area: b6;
+}
+
+#b5 {
+    grid-area: b5;
+}
+
+#b4 {
+    grid-area: b4;
+}
+
+#b3 {
+    grid-area: b3;
+}
+
+#b2 {
+    grid-area: b2;
+}
+
+#b1 {
+    grid-area: b1;
+}
+
+#b0 {
+    grid-area: b0;
+}
+
+#bd {
+    grid-area: bd;
+}
+
+#bc {
+    grid-area: bc;
+}
+
+#sq {
+    grid-area: sq;
+}
+
+#eq {
+    grid-area: eq;
+}
+
+#pl {
+    grid-area: pl;
+}
+
+#mn {
+    grid-area: mn;
+}
+
+#pm {
+    grid-area: pm;
+}
+
+#cm {
+    grid-area: cm;
+}
+
+#mp {
+    grid-area: mp;
+}
+
+#dv {
+    grid-area: dv;
+}
+
+button {
+    height: 100%;
+    font-size: 18px;
+}
